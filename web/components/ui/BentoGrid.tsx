@@ -75,11 +75,11 @@ export const BentoGridItem = ({
     },
   };
 
-  const handleCopy = () => {
-    const text = "hsu@jsmastery.pro";
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-  };
+  // const handleCopy = () => {
+  //   const text = "hsu@jsmastery.pro";
+  //   navigator.clipboard.writeText(text);
+  //   setCopied(true);
+  // };
 
   return (
     <div
@@ -137,7 +137,7 @@ export const BentoGridItem = ({
           {id === 2 && (
             <div className="w-full flex flex-col justify-center items-start py-3 pl-20">
               {uniqueFeatures.map((feature, i) => (
-                <span className="py-1 flex justify-center items-center gap-2">
+                <span className="py-1 flex justify-center items-center gap-2" key={i}>
                   {" "}
                   <FaCheckCircle className="w-[35px] h-[35px] text-green-400" />
                   {feature}
