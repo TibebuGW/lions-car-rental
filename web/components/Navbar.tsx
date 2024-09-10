@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { styles } from "@/styles";
 import { navLinks } from "@/constants";
-import { logo2, menu, close } from "@/public/assets";
+import { logo3, menu, close } from "@/public/assets";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -43,7 +43,7 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <Image src={logo2} alt="logo" className="w-9 h-9 object-contain" />
+          <Image src={logo3} alt="logo" className="w-9 h-9 object-contain" />
           <p className="text-[18px] font-bold cursor-pointer flex">Lions Car Rental</p>
         </Link>
 

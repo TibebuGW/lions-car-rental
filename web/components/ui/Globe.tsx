@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Object3DNode, Canvas, extend } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+// import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
 declare module "@react-three/fiber" {
   interface ThreeElements {
@@ -264,7 +264,7 @@ export function World(props: WorldProps) {
         intensity={0.8}
       />
       <Globe {...props} />
-      <OrbitControls
+      {/* <OrbitControls
         enablePan={false}
         enableZoom={false}
         minDistance={cameraZ}
@@ -273,7 +273,7 @@ export function World(props: WorldProps) {
         autoRotate={true}
         minPolarAngle={Math.PI / 3.5}
         maxPolarAngle={Math.PI - Math.PI / 3}
-      />
+      /> */}
     </Canvas>
   );
 }

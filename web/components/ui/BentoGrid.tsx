@@ -1,16 +1,15 @@
-"use client"
+"use client";
 import { useState } from "react";
-import { IoCopyOutline } from "react-icons/io5";
-
+import { FaLocationArrow } from "react-icons/fa6";
+import Image from "next/image";
 // Also install this npm i --save-dev @types/react-lottie
 import Lottie from "react-lottie";
 
 import { cn } from "@/lib/utils";
 
-
 import { BackgroundGradientAnimation } from "./GradientBg";
-import GridGlobe from "./GridGlobe";
 import animationData from "@/data/confetti.json";
+import { FaCheckCircle } from "react-icons/fa";
 import MagicButton from "../MagicButton";
 
 export const BentoGrid = ({
@@ -53,8 +52,17 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript"];
-  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
+  const leftLists = [
+    { name: "Toyota", image: "/assets/car_logos/Toyota.jpg" },
+    { name: "Ferrari", image: "/assets/car_logos/Ferrari.jpg" },
+    { name: "Maserati", image: "/assets/car_logos/Maserati.jpg" },
+  ];
+  const rightLists = [
+    { name: "Lamborghini", image: "/assets/car_logos/Lamborghini.jpg" },
+    { name: "Rolls Royce", image: "/assets/car_logos/Rolls_Royce.jpg" },
+    { name: "Hyundai", image: "/assets/car_logos/Hyundai.jpg" },
+  ];
+  const uniqueFeatures = ["Fast Response", "Variety of Options", "Free Delivery"];
 
   const [copied, setCopied] = useState(false);
 
@@ -84,31 +92,23 @@ export const BentoGridItem = ({
         //   add these two
         //   you can generate the color from here https://cssgradient.io/
         background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+        backgroundColor: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
       }}
     >
       {/* add img divs */}
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
-            <img
-              src={img}
-              alt={img}
-              className={cn(imgClassName, "object-cover object-center ")}
-            />
+            <img src={img} alt={img} className={cn(imgClassName, "object-cover object-center")} />
           )}
         </div>
-        <div
-          className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"
-            } `}
-        >
+        <div className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"} `}>
           {spareImg && (
             <img
               src={spareImg}
               alt={spareImg}
               //   width={220}
-              className="object-cover object-center w-full h-full"
+              className="object-contain object-center w-[120px] h-[120px]"
             />
           )}
         </div>
@@ -122,36 +122,43 @@ export const BentoGridItem = ({
         <div
           className={cn(
             titleClassName,
-            "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
+            `group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col p-10 lg:px-10 ${id === 2 ? "py-3" : "py-10"}`
           )}
         >
           {/* change the order of the title and des, font-extralight, remove text-xs text-neutral-600 dark:text-neutral-300 , change the text-color */}
-          <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
+          <div className="font-sans font-extralight md:max-w-50 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
             {description}
           </div>
           {/* add text-3xl max-w-96 , remove text-neutral-600 dark:text-neutral-300 */}
           {/* remove mb-2 mt-2 */}
-          <div
-            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
-          >
-            {title}
-          </div>
+          <div className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}>{title}</div>
 
           {/* for the github 3d globe */}
-          {id === 2 && <GridGlobe />}
+          {id === 2 && (
+            <div className="w-full flex flex-col justify-center items-start py-3 pl-20">
+              {uniqueFeatures.map((feature, i) => (
+                <span className="py-1 flex justify-center items-center gap-2">
+                  {" "}
+                  <FaCheckCircle className="w-[35px] h-[35px] text-green-400" />
+                  {feature}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Tech stack list div */}
           {id === 3 && (
-            <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
+            <div className="flex gap-1 lg:gap-5 w-fit absolute -right-0 lg:-right-0">
               {/* tech stack lists */}
               <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
                 {leftLists.map((item, i) => (
                   <span
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                    className="lg:py-4 lg:px-1 py-2 px-1 text-xs lg:text-base opacity-50 flex items-center justify-center gap-2
+                    lg:opacity-100 rounded-lg text-center bg-black"
                   >
-                    {item}
+                    <Image src={item.image} alt={item.name} width={20} height={20} />
+                    {item.name}
                   </span>
                 ))}
                 <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
@@ -161,35 +168,31 @@ export const BentoGridItem = ({
                 {rightLists.map((item, i) => (
                   <span
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                    className="lg:py-4 lg:px-1 py-2 px-1 text-xs lg:text-base opacity-50 flex items-center justify-center gap-2
+                  lg:opacity-100 rounded-lg text-center bg-black"
                   >
-                    {item}
+                    <Image src={item.image} alt={item.name} width={20} height={20} />
+                    {item.name}
                   </span>
                 ))}
               </div>
             </div>
           )}
+
           {id === 6 && (
             <div className="mt-5 relative">
-              {/* button border magic from tailwind css buttons  */}
-              {/* add rounded-md h-8 md:h-8, remove rounded-full */}
-              {/* remove focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 */}
-              {/* add handleCopy() for the copy the text */}
-              <div
-                className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"
-                  }`}
-              >
+              <div className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"}`}>
                 {/* <img src="/confetti.gif" alt="confetti" /> */}
                 <Lottie options={defaultOptions} height={200} width={400} />
               </div>
 
               <MagicButton
-                title={copied ? "Email is Copied!" : "Copy my email address"}
-                icon={<IoCopyOutline />}
-                position="left"
-                handleClick={handleCopy}
-                otherClasses="!bg-[#161A31]"
+                title="Show Location"
+                handleClick={() =>
+                  (window.location.href = "https://maps.apple.com/place?address=Dubai%2C+United+Arab+Emirates&auid=10070693949116118154&ll=25.214465%2C55.276649&lsp=6489&q=Dubai&t=m")
+                }
+                icon={<FaLocationArrow />}
+                position="right"
               />
             </div>
           )}

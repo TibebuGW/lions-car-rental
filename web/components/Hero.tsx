@@ -1,7 +1,7 @@
 /* eslint-disable no-return-assign */
 "use client";
 import { FaLocationArrow } from "react-icons/fa6";
-import { logo2 } from "@/public/assets";
+import { logo3 } from "@/public/assets";
 import Image from "next/image";
 import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
@@ -45,19 +45,17 @@ const Hero = () => {
             </h1>
           </div>
 
-          <a href="#about">
-            <MagicButton
-              title="Visit our instagram"
-              handleClick={() =>
-                (window.location.href = "https://www.instagram.com/lion_car_rental/")
-              }
-              icon={<FaLocationArrow />}
-              position="right"
-            />
-          </a>
+          <MagicButton
+            title="Visit our instagram"
+            handleClick={() =>
+              (window.location.href = "https://www.instagram.com/lion_car_rental/")
+            }
+            icon={<FaLocationArrow />}
+            position="right"
+          />
         </div>
         <div className="w-[600px] flex justify-center items-center">
-          <Image src={logo2} alt="logo" className="w-9 h-9 object-contain grow-animation" />
+          <Image src={logo3} alt="logo" className="w-9 h-9 object-contain grow-animation" />
         </div>
       </div>
     </div>
