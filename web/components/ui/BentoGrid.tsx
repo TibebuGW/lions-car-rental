@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaLocationArrow } from "react-icons/fa6";
 import Image from "next/image";
 // Also install this npm i --save-dev @types/react-lottie
@@ -66,6 +66,9 @@ export const BentoGridItem = ({
 
   const [copied, setCopied] = useState(false);
 
+  useEffect(() => {
+    setCopied(false);
+  }, []);
   const defaultOptions = {
     loop: copied,
     autoplay: copied,
