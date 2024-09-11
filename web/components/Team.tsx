@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { team } from "@/data";
 import { Button } from "./ui/MovingBorders";
 
@@ -25,7 +24,7 @@ const Team = () => {
           >
             <div className="w-full h-[200px] flex justify-start items-center ml-10 gap-10">
               <div className="relative max-h-[120px] max-w-[120px]">
-                <Image
+                <img
                   src={card.thumbnail}
                   alt="User Image"
                   className="rounded-full object-cover w-28 h-28"
